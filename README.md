@@ -30,8 +30,8 @@ For a kirby3 site, this plugin (_omz13/feeds_)  generates syndication feeds in R
 - The following data is derrived as follows from fields in the pages (and their use depends on the feed format used):
   - the author(s) to be attributed is taken from the `author` field: this field can be either a structured field or a text field, but it should be the email address of the author (and will be used to map to a kirby user for their details). If an author can not be mapped to a user, a default is applied, c.f. `author` in _Configuration_.
   - the title from `title`, a string.
-  - the modified date from, in order of preference: `updatedat`, `date`; note: if neither of these can be resolved, the the page's underlying file's modified-at attribute is used.
-  - the published date from in order of preference: `date`, `updatedat`; note: if neither of these can be resolved, the the page's underlying file's modified-at attribute is used.
+  - the modified date from, in order of preference: `updatedat` (or user-defined field), `date`; note: if neither of these can be resolved, the the page's underlying file's modified-at attribute is used.
+  - the published date from in order of preference: `date`, `updatedat` (or user-defined field); note: if neither of these can be resolved, the the page's underlying file's modified-at attribute is used.
 - For ATOM and JSON feeds, per author details are supplemented by their user (in order of preference) `website` or `twitter` or `instagram` data mapping to `uri`.
 - If an item has multiple authors:
   - For RSS and JSON feeds, the author will be given a concatenation of the authors' names (e.g. if the authors are Ford and Zaphod, they would be attributed as "Ford and Zaphod").
@@ -118,6 +118,7 @@ In your site's `site/config/config.php` the following entries prefixed with `omz
 - `categories` - optional - array - default `[ 'articles' ] ` - the names of the kirby collections that can be accessed using the uri `/feeds/<category>/atom|json|rss`. If an empty array is specifed (`[]`) then this feature is disabled.
 - `debugqueryvalue` - optional - string - the value for the query parameter `debug` to return a feed with debugging information (as comments within response). The global kirby `debug` configuration must also be true for this to work. Be aware that the debugging information will show, if applicable, details of any pages that have been excluded (so if you are using this in production and you don't want things to leak, set `debugqueryvalue` to something random). Furthermore, the site debug flag needs to be set too (i.e. the `debug` flag in `site/config.php`).
 - `author` - optional - string - default `'Staff Writer'` - the name to be used for each item in a feed when either the author is unknown or the syndication format does not allow an author name (looking at you RSS2).
+- `lastmodField` - optional - string - default `'updatedat'` -  => the field, where the plugin should look for the modified time of a page.
 
 #### `content/site.txt` (via blueprint `site/blueprints/site.yml`)
 

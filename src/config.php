@@ -12,6 +12,7 @@ Kirby::plugin(
         'firehose'        => 'articles',      // the collection to use for the firehose feed, i.e. /feed/whatever
         'categories'      => [],              // list of collections to use for /feed/<category>/whatever, if empty, disabled
         'author'          => 'Staff Writer',  // default author name
+        'lastmodField'    => 'updatedat',     // sets the field for retrieving the update time from pages.
       ],
 
       'snippets'    => [

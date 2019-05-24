@@ -364,8 +364,10 @@ class Feeds
 
   private static function getDatesFromPage( Page $p, int &$whenMod, int &$whenPub ) : void {
     // calculate lastmod
-    if ( $p->content()->has( 'updatedat' ) ) {
-      $t       = $p->content()->get( 'updatedat' );
+    $lastmodField = static::getConfigurationForKey('lastmodField');
+
+    if ( $p->content()->has( $lastmodField ) ) {
+      $t       = $p->content()->get( $lastmodField );
       $whenMod = strtotime( $t );
     } else {
       if ( $p->content()->has( 'date' ) ) {
