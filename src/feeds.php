@@ -41,6 +41,7 @@ use function md5;
 use function microtime;
 use function next;
 use function str_replace;
+use function strip_tags;
 use function strlen;
 use function strpos;
 use function strtolower;
@@ -455,7 +456,7 @@ class Feeds
     $r .= "  <link href=\"" . kirby()->site()->url() . "/\" rel=\"alternate\" type=\"text/html\" />\n";
     $r .= "  <id>" . $feedme . "</id>\n";
     $r .= "  <updated>" . date( 'Y-m-d\TH:i:s', (int) $lastMod ) . "Z</updated>\n";
-    $r .= "  <rights>" . kirby()->site()->content()->get( 'copyright' ) . "</rights>\n";
+    $r .= "  <rights>" . strip_tags( kirby()->site()->content()->get( 'copyright' )->kirbytext() ) . "</rights>\n";
     $r .= "  <generator uri=\"https://github.com/omz13/kirby3-feeds\">" . strtolower( str_replace( '\\', '-', static::getNameOfClass() ) ) . "</generator>\n";
 
     $r .= $x;
