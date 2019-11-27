@@ -529,7 +529,7 @@ class Feeds
   * @SuppressWarnings(PHPMD.NPathComplexity)
    */
   private static function addPagesToFeedWhatever( Pages $pages, string &$r, callable $runner, int &$lastMod ) : void {
-    $sortedpages = $pages->visible()->sortBy( 'date', 'asc' )->flip()->limit( 60 );
+    $sortedpages = $pages->listed()->sortBy( 'date', 'asc' )->flip()->limit( 60 );
 
     $numPage = $sortedpages->count();
 
